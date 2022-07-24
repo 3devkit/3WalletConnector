@@ -1,0 +1,54 @@
+.DialogContent {
+  width: 360px;
+}
+
+.WalletList {
+  display: flex;
+  flex-direction: column;
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    cursor: pointer;
+
+    &:not(:nth-last-child(1)) {
+      margin-bottom: 0px;
+    }
+
+    &:hover {
+      background-color: aliceblue;
+      border-radius: 6px;
+    }
+
+    .left {
+      font-weight: bold;
+
+      svg {
+        margin-right: 16px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .loading {
+        margin-left: 20px;
+      }
+
+      .tag {
+        background-color: red;
+        border-radius: 4px;
+        padding: 2px 8px;
+        color: #fff;
+        font-size: 12px;
+      }
+    }
+  }
+}
