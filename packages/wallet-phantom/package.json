@@ -1,5 +1,5 @@
 {
-  "name": "@3walletconnector/wallet_metamask",
+  "name": "@3walletconnector/wallet-phantom",
   "version": "0.0.18",
   "description": "wallet login",
   "author": "WEB3.WALLE <web3.walle@gmail.com>",
@@ -18,6 +18,9 @@
   "repository": {
     "type": "github",
     "url": "https://github.com/3devkit/3walletconnector"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.50.0"
   },
   "gitHead": "01a91752f484a8946886b3ec39647ca2a38c46e6"
 }
