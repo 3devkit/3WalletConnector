@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { ConfigureParam } from '@3walletconnector/core';
-import { AuthStateBox } from '@3walletconnector/react-ui';
+import { WalletConnectStateWrapper } from '@3walletconnector/react-ui';
 import { MetamaskConnector } from '@3walletconnector/wallet-metamask';
 import { PhantomConnector } from '@3walletconnector/wallet-phantom';
 import { ExButton, ExPopover, ExPopoverBox } from '@3lib/components';
@@ -52,7 +52,7 @@ function LayoutConnent(props: React.PropsWithChildren<unknown>) {
 function PageConnent() {
   return (
     <Container>
-      <AuthStateBox
+      <WalletConnectStateWrapper
         onLoggedBuilder={context => {
           return (
             <div className={styles.UserBox}>

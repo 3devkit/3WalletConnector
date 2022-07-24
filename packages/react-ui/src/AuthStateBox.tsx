@@ -11,23 +11,20 @@ import { useMemoizedFn } from 'ahooks';
 import { WalletList } from './WalletLogin';
 import styles from './styles.less';
 
-interface AuthStateBoxProps {
-  onLoggedBuilder: (context: AuthStateBoxContext) => JSX.Element;
-  onNotLoggedBuilder: (context: AuthStateBoxContext) => JSX.Element;
+interface WalletConnectStateProps {
+  onLoggedBuilder: (context: WalletConnectStateContext) => JSX.Element;
+  onNotLoggedBuilder: (context: WalletConnectStateContext) => JSX.Element;
 }
 
-export function AuthStateBox(props: AuthStateBoxProps) {
+export function WalletConnectStateWrapper(props: WalletConnectStateProps) {
   return (
     <ExModalProvider>
-      <AuthStateBoxContent {...props} />
+      <WalletConnectStateContent {...props} />
     </ExModalProvider>
   );
 }
 
-function AuthStateBoxContent(props: {
-  onLoggedBuilder: (context: AuthStateBoxContext) => JSX.Element;
-  onNotLoggedBuilder: (context: AuthStateBoxContext) => JSX.Element;
-}) {
+function WalletConnectStateContent(props: WalletConnectStateProps) {
   const { onLoggedBuilder, onNotLoggedBuilder } = props;
   const { openDialog } = useModalAction();
 
@@ -45,7 +42,7 @@ function AuthStateBoxContent(props: {
   });
 
   const context = useMemo(() => {
-    return new AuthStateBoxContext(
+    return new WalletConnectStateContext(
       walletConnector,
       walletState,
       openLoginDialog,
@@ -63,7 +60,7 @@ function AuthStateBoxContent(props: {
   );
 }
 
-class AuthStateBoxContext {
+class WalletConnectStateContext {
   public constructor(
     public walletConnector: WalletConnectorSdk,
     public walletState: WalletState,
