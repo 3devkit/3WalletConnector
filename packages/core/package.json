@@ -1,6 +1,6 @@
 {
   "name": "@3walletconnector/core",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "wallet login core",
   "author": "WEB3.WALLE <web3.walle@gmail.com>",
   "homepage": "",
@@ -20,7 +20,7 @@
     "url": "https://github.com/3devkit/3walletconnector"
   },
   "dependencies": {
-    "@3walletconnector/helpers": "^0.0.17",
+    "@3walletconnector/helpers": "^0.0.18",
     "js-base64": "^3.7.2",
     "utility-types": "^3.10.0"
   },
