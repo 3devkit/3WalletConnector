@@ -7,4 +7,4 @@ export * from '@3walletconnector/react-ui';
 export * from '@3walletconnector/wallet-metamask';
 export * from '@3walletconnector/wallet-phantom';
 
-// test
+// test2
