@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseProvider, BaseConnector, Bytes } from '@3walletconnector/core';
+import { BaseProvider, BaseConnector } from '@3walletconnector/core';
 import { ReactComponent as PhantomIcon } from './phantom.svg';
 import { Base64 } from 'js-base64';
 import {

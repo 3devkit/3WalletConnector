@@ -1,6 +1,6 @@
 import React from 'react';
-import { EthConnector, BaseProvider, Bytes } from '@3walletconnector/core';
-import { EthereumChainInfo } from '@3auth//helpers';
+import { EthConnector, BaseProvider } from '@3walletconnector/core';
+import { EthereumChainInfo } from '@3walletconnector/helpers';
 import { ReactComponent as MetaMaskIcon } from './metamask.svg';
 
 interface MetamaskProvider extends BaseProvider {
