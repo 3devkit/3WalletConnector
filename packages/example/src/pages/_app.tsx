@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '@/styles/globals.css';
 import '@/styles/theme-bootstrap.css';
 import '@/styles/theme-3devkit.css';
+import { AuthProvider } from '@/view/AuthProvider';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -18,7 +19,11 @@ type AppPropsWithLayout = AppProps & {
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || (page => page);
 
-  return <>{getLayout(<Component {...pageProps} />)}</>;
+  return (
+    <>
+      <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
+    </>
+  );
 }
 
 export default MyApp;
