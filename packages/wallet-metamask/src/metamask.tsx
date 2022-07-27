@@ -87,7 +87,9 @@ export class MetamaskConnector extends EthConnector<MetamaskProvider> {
     }
   }
 
-  public async disconnect(): Promise<void> {}
+  public async disconnect(): Promise<void> {
+    this.provider.removeAllListeners();
+  }
 }
 
 class MetamaskRepo {
