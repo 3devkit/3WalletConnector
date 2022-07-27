@@ -8,6 +8,9 @@ import {
   WalletConnectStateWrapper,
   MetamaskConnector,
   PhantomConnector,
+  useWalletState,
+  useWalletConnector,
+  useWeb3Provider,
 } from '@3walletconnector/react';
 import { EthereumChainInfoHelper } from '@3walletconnector/helpers';
 import styles from './index.module.scss';
@@ -41,6 +44,17 @@ function LayoutConnent(props: React.PropsWithChildren<unknown>) {
 }
 
 function PageConnent() {
+  // const walletConnector = useWalletConnector();
+  // const walletState = useWalletState();
+  const web3Provider = useWeb3Provider();
+
+  console.info(
+    '======PageConnent========',
+    // walletConnector.connector,
+    // walletState,
+    web3Provider,
+  );
+
   return (
     <Container>
       <WalletConnectStateWrapper

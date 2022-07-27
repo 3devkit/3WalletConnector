@@ -43,7 +43,7 @@ export abstract class BaseConnector<T = any> {
   public abstract signMessage(message: string): Promise<string>;
 }
 
-export abstract class EthConnector<T> extends BaseConnector<T> {
+export abstract class EthConnector<T = any> extends BaseConnector<T> {
   private _onlyWeb3Provider?: Web3Provider;
 
   public get web3Provider() {

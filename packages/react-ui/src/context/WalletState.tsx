@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { createContext, useEffect } from 'react';
-import { WalletState } from '@3walletconnector/core';
+import { EthConnector, WalletState } from '@3walletconnector/core';
 import { useWalletConnector } from './WalletConnector';
+import { Web3Provider } from '@ethersproject/providers';
 
 export const WalletStateConrtext = createContext<WalletState | null>(null);
 
@@ -37,4 +38,14 @@ export function useWalletState() {
   if (!context) throw new Error('no WalletStateConrtext');
 
   return context;
+}
+
+export function useWeb3Provider(): Web3Provider | null {
+  const walletConnector = useWalletConnector();
+
+  useWalletState();
+
+  if (!walletConnector.connector) return null;
+
+  return (walletConnector.connector as EthConnector).web3Provider;
 }
