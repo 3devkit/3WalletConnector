@@ -41,6 +41,10 @@ export abstract class BaseConnector<T = any> {
   public abstract disconnect(): Promise<void>;
 
   public abstract signMessage(message: string): Promise<string>;
+
+  protected destroy() {
+    this._onlyProvider = undefined;
+  }
 }
 
 export abstract class EthConnector<T = any> extends BaseConnector<T> {

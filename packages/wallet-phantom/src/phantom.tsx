@@ -36,8 +36,10 @@ export class PhantomConnector extends BaseConnector<PhantomProvider> {
   }
 
   protected initialization(): void {
+    console.info('=====PhantomConnector===initialization==');
     this.provider.on('accountChanged', publicKey => {
       if (publicKey) {
+        console.info('=====PhantomConnector===initialization=2=', publicKey);
         this.actions.accountsChanged(publicKey.toString());
       }
     });
@@ -84,6 +86,8 @@ export class PhantomConnector extends BaseConnector<PhantomProvider> {
 
   public async disconnect(): Promise<void> {
     await this.provider.disconnect();
+    this.provider.removeAllListeners();
+    super.destroy();
   }
 }
 
