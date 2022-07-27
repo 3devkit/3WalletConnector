@@ -1,13 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createContext } from 'react';
 import { WalletConnectorSdk } from '@3walletconnector/core';
 
-export const WalletConnectorConrtext = createContext<WalletConnectorSdk | null>(null);
+export const WalletConnectorConrtext = createContext<WalletConnectorSdk | null>(
+  null,
+);
 
-export function WalletConnectorProvider(props: React.PropsWithChildren<{ walletConnector: WalletConnectorSdk }>) {
+export function WalletConnectorProvider(
+  props: React.PropsWithChildren<{ walletConnector: WalletConnectorSdk }>,
+) {
   const { walletConnector } = props;
 
-  return <WalletConnectorConrtext.Provider value={walletConnector}>{props.children}</WalletConnectorConrtext.Provider>;
+  useEffect(() => {
+    walletConnector.eagerlyConnect();
+  }, [walletConnector]);
+
+  return (
+    <WalletConnectorConrtext.Provider value={walletConnector}>
+      {props.children}
+    </WalletConnectorConrtext.Provider>
+  );
 }
 
 export function useWalletConnector() {

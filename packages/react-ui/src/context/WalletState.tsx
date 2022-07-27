@@ -1,51 +1,41 @@
-import React, { useContext, useState } from 'react';
-import { createContext, useEffect } from 'react';
+import { useMemo } from 'react';
 import { EthConnector, WalletState } from '@3walletconnector/core';
 import { useWalletConnector } from './WalletConnector';
 import { Web3Provider } from '@ethersproject/providers';
-
-export const WalletStateConrtext = createContext<WalletState | null>(null);
-
-export function WalletStateProvider(props: React.PropsWithChildren<unknown>) {
-  const walletConnector = useWalletConnector();
-
-  const [walletState, setWalletState] = useState<WalletState>(
-    new WalletState(),
-  );
-
-  useEffect(() => {
-    const unsubscribe = walletConnector.subscribeChange(state => {
-      setWalletState(WalletState.fromDto(state));
-    });
-
-    walletConnector.eagerlyConnect();
-
-    return () => {
-      unsubscribe();
-    };
-  }, [walletConnector]);
-
-  return (
-    <WalletStateConrtext.Provider value={walletState}>
-      {props.children}
-    </WalletStateConrtext.Provider>
-  );
-}
+import { useStore } from 'zustand';
 
 export function useWalletState() {
-  const context = useContext(WalletStateConrtext);
-
-  if (!context) throw new Error('no WalletStateConrtext');
-
-  return context;
-}
-
-export function useWeb3Provider(): Web3Provider | null {
   const walletConnector = useWalletConnector();
 
-  useWalletState();
+  const storeData = useStore(walletConnector.store.originalStore);
 
-  if (!walletConnector.connector) return null;
+  const walletState = useMemo(() => {
+    return WalletState.fromDto(storeData);
+  }, [storeData]);
 
-  return (walletConnector.connector as EthConnector).web3Provider;
+  return walletState;
+}
+
+export function useChainId() {
+  const walletConnector = useWalletConnector();
+
+  const chainId = useStore(
+    walletConnector.store.originalStore,
+    state => state.chainId,
+  );
+
+  return chainId;
+}
+
+export function useWeb3Provider(): Web3Provider | undefined {
+  const walletConnector = useWalletConnector();
+
+  const chainId = useChainId();
+
+  const web3Provider = useMemo(() => {
+    if (!walletConnector.connector) return;
+    return (walletConnector.connector as EthConnector).web3Provider;
+  }, [chainId]);
+
+  return web3Provider;
 }

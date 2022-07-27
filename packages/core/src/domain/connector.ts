@@ -1,12 +1,16 @@
 import { Web3Provider } from '@ethersproject/providers';
 import { Actions } from './actions';
 import { Configure } from './configure';
+import { Store, StoreData } from './store';
 
 export type Bytes = ArrayLike<number>;
 
 export abstract class BaseConnector<T = any> {
+  private unsubscribeFun?: () => void;
+
   public constructor(
     protected actions: Actions,
+    protected store: Store,
     protected configure: Configure,
   ) {}
 
@@ -15,14 +19,21 @@ export abstract class BaseConnector<T = any> {
   public get provider(): T {
     if (!this._onlyProvider) {
       this._onlyProvider = this.getProvider();
-      this.initialization();
+      this.init();
     }
     return this._onlyProvider;
+  }
+
+  private init() {
+    this.unsubscribeFun = this.store.subscribe(state => this.onChange(state));
+    this.initialization();
   }
 
   protected get anyWindow(): any {
     return window as any;
   }
+
+  protected abstract onChange(state: StoreData): void;
 
   protected abstract initialization(): void;
 
@@ -44,16 +55,19 @@ export abstract class BaseConnector<T = any> {
 
   protected destroy() {
     this._onlyProvider = undefined;
+    this.unsubscribeFun?.();
   }
 }
 
 export abstract class EthConnector<T = any> extends BaseConnector<T> {
-  private _onlyWeb3Provider?: Web3Provider;
+  private chainIdRef?: number;
 
-  public get web3Provider() {
-    if (!this._onlyWeb3Provider) {
-      this._onlyWeb3Provider = new Web3Provider(this.provider);
+  public web3Provider?: Web3Provider;
+
+  protected onChange(state: StoreData): void {
+    if (state.chainId !== this.chainIdRef) {
+      this.chainIdRef = state.chainId;
+      this.web3Provider = new Web3Provider(this.provider, state.chainId);
     }
-    return this._onlyWeb3Provider;
   }
 }

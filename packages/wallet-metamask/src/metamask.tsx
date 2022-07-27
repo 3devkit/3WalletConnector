@@ -1,5 +1,5 @@
 import React from 'react';
-import { EthConnector, BaseProvider } from '@3walletconnector/core';
+import { EthConnector, BaseProvider, StoreData } from '@3walletconnector/core';
 import { EthereumChainInfo } from '@3walletconnector/helpers';
 import { ReactComponent as MetaMaskIcon } from './metamask.svg';
 
@@ -62,7 +62,7 @@ export class MetamaskConnector extends EthConnector<MetamaskProvider> {
   }
 
   public async signMessage(message: string): Promise<string> {
-    const signer = this.web3Provider.getSigner();
+    const signer = this.web3Provider!.getSigner();
 
     return await signer.signMessage(message);
   }

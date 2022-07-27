@@ -6,7 +6,6 @@ import {
   WalletConnectorSdk,
 } from '@3walletconnector/core';
 import { WalletConnectorProvider } from './WalletConnector';
-import { WalletStateProvider } from './WalletState';
 import { Class } from 'utility-types';
 
 export interface Web3AuthProviderProps {
@@ -26,7 +25,7 @@ export function Web3AuthProvider(
 
     connectors.forEach(Connector => {
       walletConnector.addConnector(
-        (actions, configure) => new Connector(actions, configure),
+        (actions, store, configure) => new Connector(actions, store, configure),
       );
     });
 
@@ -35,7 +34,7 @@ export function Web3AuthProvider(
 
   return (
     <WalletConnectorProvider walletConnector={walletConnector}>
-      <WalletStateProvider>{props.children}</WalletStateProvider>
+      {props.children}
     </WalletConnectorProvider>
   );
 }

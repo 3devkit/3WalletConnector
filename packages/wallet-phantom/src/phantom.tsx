@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseProvider, BaseConnector } from '@3walletconnector/core';
+import { BaseProvider, BaseConnector, StoreData } from '@3walletconnector/core';
 import { ReactComponent as PhantomIcon } from './phantom.svg';
 import { Base64 } from 'js-base64';
 import {
@@ -36,10 +36,8 @@ export class PhantomConnector extends BaseConnector<PhantomProvider> {
   }
 
   protected initialization(): void {
-    console.info('=====PhantomConnector===initialization==');
     this.provider.on('accountChanged', publicKey => {
       if (publicKey) {
-        console.info('=====PhantomConnector===initialization=2=', publicKey);
         this.actions.accountsChanged(publicKey.toString());
       }
     });
@@ -48,6 +46,8 @@ export class PhantomConnector extends BaseConnector<PhantomProvider> {
   public get isInstalled(): boolean {
     return !!this.anyWindow?.phantom?.solana;
   }
+
+  protected onChange(store: StoreData): void {}
 
   protected getProvider() {
     if (this.isInstalled) {

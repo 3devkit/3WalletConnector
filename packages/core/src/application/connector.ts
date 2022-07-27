@@ -23,9 +23,13 @@ export class WalletConnectorSdk {
    * @param createFun
    */
   public addConnector(
-    createFun: (actions: Actions, configure: Configure) => BaseConnector,
+    createFun: (
+      actions: Actions,
+      store: Store,
+      configure: Configure,
+    ) => BaseConnector,
   ) {
-    this.connectors.push(createFun(this.actions, this.configure));
+    this.connectors.push(createFun(this.actions, this.store, this.configure));
   }
 
   /**
