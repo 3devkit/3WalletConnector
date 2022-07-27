@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { ExButton, ExPopover, ExPopoverBox } from '@3lib/components';
+import { ExButton, ExLoading, ExPopover, ExPopoverBox } from '@3lib/components';
 import { StyleHelper } from '@3lib/helpers';
 import {
   Web3AuthProvider,
@@ -27,17 +27,6 @@ function LayoutConnent(props: React.PropsWithChildren<unknown>) {
     supportedEthereumChain: [
       EthereumChainInfoHelper.getMainnet(),
       EthereumChainInfoHelper.getRinkeby(),
-      {
-        chainId: 56,
-        rpcUrls: ['https://bsc-dataseed.binance.org/'],
-        chainName: 'Smart Chain',
-        nativeCurrency: {
-          name: 'Smart Chain',
-          symbol: 'BNB',
-          decimals: 18,
-        },
-        blockExplorerUrls: ['https://bscscan.com'],
-      },
     ],
   };
 
@@ -55,6 +44,9 @@ function PageConnent() {
   return (
     <Container>
       <WalletConnectStateWrapper
+        onLoadingBuilder={() => {
+          return <ExLoading />;
+        }}
         onLoggedBuilder={context => {
           return (
             <div className={styles.UserBox}>

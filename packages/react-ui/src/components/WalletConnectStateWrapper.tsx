@@ -11,9 +11,20 @@ import { useMemoizedFn } from 'ahooks';
 import { WalletList } from './WalletLogin';
 import styles from './styles.less';
 
+interface LoggedContext {
+  walletConnector: WalletConnectorSdk;
+  walletState: WalletState;
+}
+
+interface NotLoggedContext {
+  walletConnector: WalletConnectorSdk;
+  openLoginDialog: () => void;
+}
+
 interface WalletConnectStateProps {
-  onLoggedBuilder: (context: WalletConnectStateContext) => JSX.Element;
-  onNotLoggedBuilder: (context: WalletConnectStateContext) => JSX.Element;
+  onLoadingBuilder: () => JSX.Element;
+  onLoggedBuilder: (context: LoggedContext) => JSX.Element;
+  onNotLoggedBuilder: (context: NotLoggedContext) => JSX.Element;
 }
 
 export function WalletConnectStateWrapper(props: WalletConnectStateProps) {
@@ -25,7 +36,7 @@ export function WalletConnectStateWrapper(props: WalletConnectStateProps) {
 }
 
 function WalletConnectStateContent(props: WalletConnectStateProps) {
-  const { onLoggedBuilder, onNotLoggedBuilder } = props;
+  const { onLoggedBuilder, onNotLoggedBuilder, onLoadingBuilder } = props;
   const { openDialog } = useModalAction();
 
   const walletConnector = useWalletConnector();
@@ -41,29 +52,13 @@ function WalletConnectStateContent(props: WalletConnectStateProps) {
     );
   });
 
-  const context = useMemo(() => {
-    return new WalletConnectStateContext(
-      walletConnector,
-      walletState,
-      openLoginDialog,
-    );
-  }, [walletConnector, walletState, openLoginDialog]);
-
-  if (walletState.isEagerlyConnecting) return <ExLoading />;
+  if (walletState.isEagerlyConnecting) return onLoadingBuilder();
 
   return (
     <>
       {walletState.isConnected
-        ? onLoggedBuilder(context)
-        : onNotLoggedBuilder(context)}
+        ? onLoggedBuilder({ walletConnector, walletState })
+        : onNotLoggedBuilder({ walletConnector, openLoginDialog })}
     </>
   );
-}
-
-class WalletConnectStateContext {
-  public constructor(
-    public walletConnector: WalletConnectorSdk,
-    public walletState: WalletState,
-    public openLoginDialog: () => void,
-  ) {}
 }
