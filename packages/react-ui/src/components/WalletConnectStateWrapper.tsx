@@ -11,20 +11,20 @@ import { useMemoizedFn } from 'ahooks';
 import { WalletList } from './WalletLogin';
 import styles from './styles.less';
 
-interface LoggedContext {
+export interface ConnectedContext {
   walletConnector: WalletConnectorSdk;
   walletState: WalletState;
 }
 
-interface NotLoggedContext {
+export interface NotConnectedContext {
   walletConnector: WalletConnectorSdk;
   openLoginDialog: () => void;
 }
 
-interface WalletConnectStateProps {
-  onLoadingBuilder: () => JSX.Element;
-  onLoggedBuilder: (context: LoggedContext) => JSX.Element;
-  onNotLoggedBuilder: (context: NotLoggedContext) => JSX.Element;
+export interface WalletConnectStateProps {
+  onConnectingBuilder: () => JSX.Element;
+  onConnectedBuilder: (context: ConnectedContext) => JSX.Element;
+  onNotConnectedBuilder: (context: NotConnectedContext) => JSX.Element;
 }
 
 export function WalletConnectStateWrapper(props: WalletConnectStateProps) {
@@ -36,7 +36,8 @@ export function WalletConnectStateWrapper(props: WalletConnectStateProps) {
 }
 
 function WalletConnectStateContent(props: WalletConnectStateProps) {
-  const { onLoggedBuilder, onNotLoggedBuilder, onLoadingBuilder } = props;
+  const { onConnectingBuilder, onConnectedBuilder, onNotConnectedBuilder } =
+    props;
   const { openDialog } = useModalAction();
 
   const walletConnector = useWalletConnector();
@@ -52,13 +53,13 @@ function WalletConnectStateContent(props: WalletConnectStateProps) {
     );
   });
 
-  if (walletState.isEagerlyConnecting) return onLoadingBuilder();
+  if (walletState.isEagerlyConnecting) return onConnectingBuilder();
 
   return (
     <>
       {walletState.isConnected
-        ? onLoggedBuilder({ walletConnector, walletState })
-        : onNotLoggedBuilder({ walletConnector, openLoginDialog })}
+        ? onConnectedBuilder({ walletConnector, walletState })
+        : onNotConnectedBuilder({ walletConnector, openLoginDialog })}
     </>
   );
 }

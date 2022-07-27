@@ -58,10 +58,10 @@ function PageConnent() {
   return (
     <Container>
       <WalletConnectStateWrapper
-        onLoadingBuilder={() => {
+        onConnectingBuilder={() => {
           return <ExLoading />;
         }}
-        onLoggedBuilder={context => {
+        onConnectedBuilder={context => {
           return (
             <div className={styles.UserBox}>
               <ExPopover
@@ -100,7 +100,7 @@ function PageConnent() {
             </div>
           );
         }}
-        onNotLoggedBuilder={context => {
+        onNotConnectedBuilder={context => {
           return (
             <ExButton onClick={context.openLoginDialog}>
               Connect Wallet
