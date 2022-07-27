@@ -1,6 +1,3 @@
-export * from './provider';
-export * from './context';
-
 export * from '@3walletconnector/core';
 export * from '@3walletconnector/helpers';
 export * from '@3walletconnector/react-ui';

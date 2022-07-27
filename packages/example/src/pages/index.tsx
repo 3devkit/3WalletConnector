@@ -1,12 +1,14 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { ConfigureParam } from '@3walletconnector/core';
-import { WalletConnectStateWrapper } from '@3walletconnector/react-ui';
-import { MetamaskConnector } from '@3walletconnector/wallet-metamask';
-import { PhantomConnector } from '@3walletconnector/wallet-phantom';
 import { ExButton, ExPopover, ExPopoverBox } from '@3lib/components';
 import { StyleHelper } from '@3lib/helpers';
-import { Web3AuthProvider } from '@3walletconnector/react';
+import {
+  Web3AuthProvider,
+  ConfigureParam,
+  WalletConnectStateWrapper,
+  MetamaskConnector,
+  PhantomConnector,
+} from '@3walletconnector/react';
 import { EthereumChainInfoHelper } from '@3walletconnector/helpers';
 import styles from './index.module.scss';
 

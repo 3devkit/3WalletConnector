@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BaseConnector } from '@3walletconnector/core';
-import { useWalletConnector } from '@3walletconnector/react';
+import { useWalletConnector } from './../context';
 import { BrowserRender } from '@3walletconnector/helpers';
 import { ExLoading, useModalAction } from '@3lib/components';
 import styles from './styles.less';

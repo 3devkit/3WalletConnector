@@ -5,7 +5,8 @@ import {
   ConfigureParam,
   WalletConnectorSdk,
 } from '@3walletconnector/core';
-import { WalletConnectorProvider, WalletStateProvider } from './context';
+import { WalletConnectorProvider } from './WalletConnector';
+import { WalletStateProvider } from './WalletState';
 import { Class } from 'utility-types';
 
 export interface Web3AuthProviderProps {

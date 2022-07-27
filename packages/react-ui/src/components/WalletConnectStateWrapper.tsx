@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { WalletConnectorSdk, WalletState } from '@3walletconnector/core';
-import { useWalletConnector, useWalletState } from '@3walletconnector/react';
+import { useWalletConnector, useWalletState } from './../context';
 import {
   ExDialogBox,
   ExLoading,
