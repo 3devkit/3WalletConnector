@@ -20,7 +20,7 @@
     "url": "https://github.com/3devkit/3walletconnector"
   },
   "dependencies": {
-    "@solana/web3.js": "^1.50.0"
+    "@solana/web3.js": "^1.50.1"
   },
   "gitHead": "904a3b55fecbf4c33b0dcce1572e96e405c698f8"
 }

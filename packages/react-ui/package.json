@@ -21,8 +21,8 @@
   },
   "gitHead": "904a3b55fecbf4c33b0dcce1572e96e405c698f8",
   "dependencies": {
-    "@3lib/components": "^0.0.19",
-    "@3lib/helpers": "^0.0.19",
+    "@3lib/components": "^0.0.24",
+    "@3lib/helpers": "^0.0.24",
     "eventemitter3": "^4.0.7",
     "react-loading": "^2.0.3"
   }
