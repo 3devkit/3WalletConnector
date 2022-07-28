@@ -25,6 +25,8 @@
     "@3walletconnector/helpers": "^0.0.40",
     "@3walletconnector/react-ui": "^0.0.40",
     "@3walletconnector/wallet-metamask": "^0.0.40",
-    "@3walletconnector/wallet-phantom": "^0.0.40"
+    "@3walletconnector/wallet-phantom": "^0.0.40",
+    "@3lib/components": "^0.0.24",
+    "@3lib/helpers": "^0.0.24"
   }
 }
