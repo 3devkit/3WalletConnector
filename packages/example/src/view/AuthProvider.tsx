@@ -9,7 +9,7 @@ import { EthereumChainInfoHelper } from '@3walletconnector/helpers';
 
 export function AuthProvider(props: React.PropsWithChildren<unknown>) {
   const configure: ConfigureParam = {
-    appName: '',
+    namespaces: '',
     defaultConnectChainId: EthereumChainInfoHelper.getMainnet().chainId,
     supportedEthereumChain: [
       EthereumChainInfoHelper.getMainnet(),
