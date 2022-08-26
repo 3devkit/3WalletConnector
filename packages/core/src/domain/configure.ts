@@ -1,7 +1,7 @@
 import { EthereumChainInfo } from '@3walletconnector/helpers';
 
 export interface ConfigureParam {
-  namespaces: string;
+  namespaces?: string;
   defaultConnectChainId: number;
   supportedEthereumChain: EthereumChainInfo[];
 }
@@ -15,7 +15,7 @@ export class Configure {
 
   public static fromParam(dto: ConfigureParam) {
     return new Configure(
-      dto.namespaces,
+      dto.namespaces ?? '',
       dto.defaultConnectChainId,
       dto.supportedEthereumChain,
     );
