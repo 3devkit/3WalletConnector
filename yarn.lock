@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@3lib/components@^0.0.24":
-  version "0.0.24"
-  resolved "https://registry.npmmirror.com/@3lib/components/-/components-0.0.24.tgz#a57dfa97fd7b15d64f71efb69bf818ef28c51e8c"
-  integrity sha512-cW3RyAv9MT0W5e7wXXf0q2jlRZVD3byy5x6oPRCg81pNkXt8kz1X0s+kuleLYMRHWc3i8iJsruRHMvfewvjHww==
+"@3lib/components@^0.0.25":
+  version "0.0.25"
+  resolved "https://registry.npmmirror.com/@3lib/components/-/components-0.0.25.tgz#87afa13bb1936bf4fbf9f454c29da47c81239f5e"
+  integrity sha512-hzrJ16YlFIPQeDfoN8x+a8C9cjRXBbpD6JYThEYYuHASncrItUXyUnU11DPpJBqqOjzURg6KezDHQaA6HC+c4w==
   dependencies:
     ahooks "^3.5.2"
     react-cool-portal "^1.2.0"
@@ -13,10 +13,10 @@
     react-popper "^2.3.0"
     zustand "^4.0.0"
 
-"@3lib/helpers@^0.0.24":
-  version "0.0.24"
-  resolved "https://registry.npmmirror.com/@3lib/helpers/-/helpers-0.0.24.tgz#8faf200e1ddaa7ba6abb630e44734d5a321baa9b"
-  integrity sha512-tyGECAQq9tX4eI2bajiEdy5b+S2gRovWihQQfnb0bqZSZ8wUQIDrLABxpRJiIZEqFMOfQ2O2eDb+H9sZKlh2hg==
+"@3lib/helpers@^0.0.25":
+  version "0.0.25"
+  resolved "https://registry.npmmirror.com/@3lib/helpers/-/helpers-0.0.25.tgz#7ef26c762319f46cf0427be7b26ce292d6bf7749"
+  integrity sha512-eTcEUyt2jx504zHwRXbJbUhytvoBLfe+8uwfH/W0c7aca1LIcvRIwh5F/qHoDOZh4CSRIWJoi0Gs+/9+2+nIxw==
 
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
