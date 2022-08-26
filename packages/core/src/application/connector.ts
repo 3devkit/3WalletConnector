@@ -4,6 +4,7 @@ import { WalletState } from '../domain/walletstate';
 import { Store } from '../domain/store';
 import { Configure } from '../domain';
 import { WalletMemoryRepo } from '../repo';
+import { Class } from 'utility-types';
 
 export class WalletConnectorSdk {
   public store: Store;
@@ -12,24 +13,31 @@ export class WalletConnectorSdk {
   public connector?: BaseConnector;
   private _walletMemoryRepo: WalletMemoryRepo;
 
-  public constructor(public configure: Configure) {
+  public constructor(
+    public configure: Configure,
+    classConnectors: Class<BaseConnector>[],
+  ) {
     this.store = new Store();
+
     this.actions = new Actions(this.store);
+
     this._walletMemoryRepo = new WalletMemoryRepo(this.configure);
+
+    this.setConnectors(classConnectors);
   }
 
   /**
-   * addConnector
-   * @param createFun
+   * setConnectors
+   * @param classConnectors
    */
-  public addConnector(
-    createFun: (
-      actions: Actions,
-      store: Store,
-      configure: Configure,
-    ) => BaseConnector,
-  ) {
-    this.connectors.push(createFun(this.actions, this.store, this.configure));
+  public setConnectors(classConnectors: Class<BaseConnector>[]) {
+    this.connectors = [];
+
+    classConnectors.forEach(Connector => {
+      this.connectors.push(
+        new Connector(this.actions, this.store, this.configure),
+      );
+    });
   }
 
   /**

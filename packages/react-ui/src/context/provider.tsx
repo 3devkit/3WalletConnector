@@ -21,13 +21,8 @@ export function Web3AuthProvider(
   const walletConnector = useMemo(() => {
     const walletConnector = new WalletConnectorSdk(
       Configure.fromParam(configure),
+      connectors,
     );
-
-    connectors.forEach(Connector => {
-      walletConnector.addConnector(
-        (actions, store, configure) => new Connector(actions, store, configure),
-      );
-    });
 
     return walletConnector;
   }, []);

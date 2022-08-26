@@ -1,45 +1,48 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Stack } from 'react-bootstrap';
 import {
   useWalletState,
   useChainId,
   useWalletConnector,
   useWeb3Provider,
+  MetamaskConnector,
 } from '@3walletconnector/react';
 import { LoginBox } from '@/view/LoginBox';
 import Link from 'next/link';
 import { ExButton } from '@3lib/components';
 
 export default function Page() {
-  // const walletConnector = useWalletConnector();
-  // const walletState = useWalletState();
+  const walletConnector = useWalletConnector();
   const web3Provider = useWeb3Provider();
-  // const chainId = useChainId();
+  const walletState = useWalletState();
+  const chainId = useChainId();
 
-  console.info('walletState : ', web3Provider);
+  const [siginInfo, setSiginInfo] = useState<string>();
 
   return (
     <Container>
-      <LoginBox />
+      <Stack gap={3}>
+        <Stack direction="horizontal" gap={3}>
+          <LoginBox />
+        </Stack>
 
-      <div>
-        <Link href={'/newPage'}>
-          <span>
-            <ExButton>NEW PAGE</ExButton>
-          </span>
-        </Link>
-      </div>
+        {walletState.isConnected && (
+          <>
+            <Stack direction="horizontal" gap={3}>
+              <ExButton
+                onClick={async () => {
+                  const siginInfo = await walletConnector.signMessage('hello');
+                  setSiginInfo(siginInfo);
+                }}
+              >
+                Sign Message
+              </ExButton>
+            </Stack>
 
-      <ExButton
-        onClick={async () => {
-          if (!web3Provider) return;
-
-          const signer = web3Provider.getSigner();
-          console.info('====signer========', await signer.signMessage('dasd'));
-        }}
-      >
-        Sign Message
-      </ExButton>
+            <div>{siginInfo}</div>
+          </>
+        )}
+      </Stack>
     </Container>
   );
 }
