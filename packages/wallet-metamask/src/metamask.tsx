@@ -1,6 +1,7 @@
 import React from 'react';
 import { EthConnector, BaseProvider, StoreData } from '@3walletconnector/core';
 import { EthereumChainInfo } from '@3walletconnector/helpers';
+import { ethers } from 'ethers';
 import { ReactComponent as MetaMaskIcon } from './metamask.svg';
 
 interface MetamaskProvider extends BaseProvider {
@@ -48,7 +49,9 @@ export class MetamaskConnector extends EthConnector<MetamaskProvider> {
 
     try {
       const repo = new MetamaskRepo(this.provider);
+
       const account = await repo.reqAccount({ eagerly });
+
       const chainId = await repo.reqChainId();
 
       if (!eagerly) {
@@ -111,7 +114,7 @@ class MetamaskRepo {
 
     const accounts = resp as string[];
 
-    return accounts[0].toLocaleLowerCase();
+    return ethers.utils.getAddress(accounts[0]);
   }
 
   public async reqSwitchChain(chainId: number): Promise<void> {

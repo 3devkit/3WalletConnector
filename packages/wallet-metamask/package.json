@@ -19,5 +19,8 @@
     "type": "github",
     "url": "https://github.com/3devkit/3walletconnector"
   },
-  "gitHead": "904a3b55fecbf4c33b0dcce1572e96e405c698f8"
+  "gitHead": "904a3b55fecbf4c33b0dcce1572e96e405c698f8",
+  "dependencies": {
+    "ethers": "^5.7.0"
+  }
 }

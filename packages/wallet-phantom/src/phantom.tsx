@@ -96,6 +96,6 @@ class PhantomRepo {
 
   public async reqPublicKey(props: { eagerly: boolean }): Promise<string> {
     const resp = await this.provider.connect({ onlyIfTrusted: props.eagerly });
-    return resp.publicKey.toString().toLocaleLowerCase();
+    return resp.publicKey.toString();
   }
 }
