@@ -111,7 +111,7 @@ class MetamaskRepo {
 
     const accounts = resp as string[];
 
-    return accounts[0];
+    return accounts[0].toLocaleLowerCase();
   }
 
   public async reqSwitchChain(chainId: number): Promise<void> {
