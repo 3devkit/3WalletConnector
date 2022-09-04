@@ -1,6 +1,6 @@
 {
   "name": "@3walletconnector/react",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "description": "wallet login",
   "author": "WEB3.WALLE <web3.walle@gmail.com>",
   "homepage": "",
@@ -23,10 +23,10 @@
   "dependencies": {
     "@3lib/components": "^0.0.25",
     "@3lib/helpers": "^0.0.25",
-    "@3walletconnector/core": "^0.0.45",
-    "@3walletconnector/helpers": "^0.0.45",
-    "@3walletconnector/react-ui": "^0.0.45",
-    "@3walletconnector/wallet-metamask": "^0.0.45",
-    "@3walletconnector/wallet-phantom": "^0.0.45"
+    "@3walletconnector/core": "^0.0.46",
+    "@3walletconnector/helpers": "^0.0.46",
+    "@3walletconnector/react-ui": "^0.0.46",
+    "@3walletconnector/wallet-metamask": "^0.0.46",
+    "@3walletconnector/wallet-phantom": "^0.0.46"
   }
 }
