@@ -5,7 +5,7 @@ export class WalletMemoryRepo {
   private key: string;
 
   public constructor(public configure: Configure) {
-    this.key = `LastConnectedWallet_${configure.namespaces}`;
+    this.key = `LastConnectedWallet_${configure.namespace}`;
   }
 
   public get() {
